@@ -65,7 +65,9 @@ class PermissionController extends Controller
         #SET ROLES ADMIN
         // $assygn=$admin->syncRoles($roleNames);
         $roles      = Role::all(); 
-        $admin      = User::find(1);
+        $admin      = User::find(20);
+        $admin->assignRole("petugas");
+        exit;
         $roleNames  = []; // Array untuk menyimpan nama role
         foreach ($roles as $role) {
             $roleNames[] = $role->name; // Simpan nama role

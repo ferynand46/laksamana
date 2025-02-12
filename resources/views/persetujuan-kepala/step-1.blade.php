@@ -11,7 +11,7 @@
         <div class="col-md-6">
             <div class="form-group">
                 <label class="form-label" for="petugas_penerimaan">Petugas Penerimaan</label>
-                <input type="text" class="form-control" name="residense_petugas" value="{{$residensial->nama}}" />
+                <input type="text" class="form-control" name="residense_petugas" value="{{$residensial->nama_petugas}}" />
             </div>
         </div>
         <div class="col-md-6">

@@ -63,10 +63,10 @@ class PersetujuanKepalaController extends Controller
     public function edit($id){
         // dd($id);
         // $residensial    = Residensial::findOrFail($id);
-        $residensial = Residensial::select("laksa_tr_layanan.id as residensial_id","laksa_tr_layanan.*","laksa_ms_ppks.*","laksa_ms_sumber_rujukan.*","laksa_ms_pendamping_sosial.*","laksa_ms_pegawai.*","laksa_ms_status.*","laksa_ms_gedung.*","laksa_ms_pengampu.*");
+        $residensial = Residensial::select("laksa_tr_layanan.id as residensial_id","laksa_tr_layanan.*","laksa_ms_ppks.*","laksa_ms_sumber_rujukan.*","laksa_ms_petugas_layanan.*","laksa_ms_status.*","laksa_ms_gedung.*","laksa_ms_pengampu.*");
         $residensial = $residensial->orderby("laksa_tr_layanan.created_at","DESC");
-        $residensial = $residensial->leftJoin('laksa_ms_pendamping_sosial', 'laksa_tr_layanan.petugas_id', '=', 'laksa_ms_pendamping_sosial.id');
-        $residensial = $residensial->leftJoin('laksa_ms_pegawai', 'laksa_ms_pendamping_sosial.pegawai_id', '=', 'laksa_ms_pegawai.id');
+        $residensial = $residensial->leftJoin('laksa_ms_petugas_layanan', 'laksa_tr_layanan.petugas_id', '=', 'laksa_ms_petugas_layanan.id');
+        // $residensial = $residensial->leftJoin('laksa_ms_pegawai', 'laksa_ms_pendamping_sosial.pegawai_id', '=', 'laksa_ms_pegawai.id');
         $residensial = $residensial->leftJoin('laksa_ms_ppks', 'laksa_tr_layanan.pasien_id', '=', 'laksa_ms_ppks.id');
         $residensial = $residensial->leftJoin('laksa_ms_sumber_rujukan', 'laksa_tr_layanan.sumber_id', '=', 'laksa_ms_sumber_rujukan.id');
         $residensial = $residensial->leftJoin('laksa_ms_status', 'laksa_tr_layanan.status_id', '=', 'laksa_ms_status.id');
@@ -74,6 +74,7 @@ class PersetujuanKepalaController extends Controller
         $residensial = $residensial->leftJoin('laksa_ms_pengampu', 'laksa_tr_layanan.pengampu_id', '=', 'laksa_ms_pengampu.id');
         $residensial = $residensial->where("laksa_tr_layanan.id","=",$id);
         $residensial = $residensial->first();
+        // dd($residensial);
 
         $detail_ppks_value=[];
         // dd(json_decode($residensial->kategori_ppks_json));
